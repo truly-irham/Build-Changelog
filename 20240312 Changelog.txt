@@ -1,0 +1,655 @@
+
+2024-03-12
+
+
+IMPORTANT NOTES:
+
+1.  HyperOS V816.0.2.0.ULBCNXM firmware and vendor blobs are now included
+    by default in this build. NO NEED TO FLASH FIRMWARE TO USE THIS BUILD.
+2.  There will be a lot of screen jittering/lagging if you have not set the
+    minimum refresh rate to 24Hz. To solve this issue, simply go to
+    Settings > Display > Minimum refresh rate > set to 24Hz.
+
+Device side changes:
+
+    * The device and common tree used in this build are now based on Arian's 
+      LineageOS 21 trees, including the kernel trees.
+    * Battery backup issue is fixed in this build by dropping some forcing
+      IMS features.
+    * KernelSU is now supported by default. To enable KernelSU, simply download
+      the KernelSU manager (APK file) via the following link:
+      https://github.com/tiann/KernelSU/releases/download/v0.8.1/KernelSU_v0.8.1-20-gdbe43b1_11583-release.apk
+    * MIUI Cam is yet to be shipped along with this new build since some patches
+      are required to make the MIUI Cam from HyperOS to work properly. For the
+      time being, feel free to use Arian's Magisk module (which is available in 
+      the SourceForge directory of this new build) to install the MIUI Cam
+      from HyperOS (although the front camera still does not work properly yet).
+
+Detailed ROM, device and kernel side changes:
+
+=======================
+     2024/03/12
+=======================
+
+* Repository: https://github.com/LineageOS/android_hardware_xiaomi/commits/lineage-21
+
+3d894c0 sensors: Handle fod press status without coordinates
+b7f65f7 sensors: Add udfps long press sensor
+8acdaf3 sensors: Fix locking around setOperationMode and activate
+a04fad1 sensors: Move one shot sensor out of main class
+91b88fe sensors: Make sensor set mode operation function virtual
+af287fd sensors: Make sensor flush function virtual
+9fb326d sensors: Make sensor run function virtual
+8dcc93f sensors: Make sensor batch function virtual
+44f4e34 Add dummy sensors sub HAL
+
+* Repository: https://github.com/cupid-development/android_kernel_xiaomi_sm8450/commits/lineage-21
+
+7d48f2e60dfc power: supply: qti_battery_charger: Return time to full in seconds
+4b94e446292b power: supply: qti_battery_charger: Return charge counter in uAh
+d99634e46b20 power: supply: qti_battery_charger: Add missing type specifiers
+1a9e3ac11249 power: supply: qti_battery_charger: Add support for 33W reverse wireless charging
+f3cb9d990466 power: supply: qti_battery_charger: Add support for display port
+7b2f64f7e3d6 power: supply: qti_battery_charger: Add config to match m81 module
+da9d65d7d626 power: supply: qti_battery_charger: Replace MI_CHARGE_PROPERTY with MI_WLS_REVERSE_CHG_ONLY
+c4330a4567a1 power: supply: xiaomi: Support WIRELESS_REVERSE_CLOSE
+34048701f8e7 power: supply: qti_battery_charger: Update from garnet-t-oss
+767b25eb7937 power: supply: qti_battery_charger: Import xiaomi changes
+251df3c54268 Revert "power: supply: qti_battery_charger: Import xiaomi changes"
+145d64879692 Revert "power: supply: qti_battery_charger: Add missing type specifiers"
+d7bba7e99af5 Revert "Revert "power: supply: qti_battery_charger: Add dynamic uusb detection""
+6fe6715daeaa Revert "Revert "power: qti_typec_class: Add typec class support for micro USB""
+77d6eb5df3af Revert "Revert "power: supply: qti_battery_charger: Add extcon support""
+262f162ec98d Revert "power: supply: qti_battery_charger: Return charge counter in uAh"
+ab2d0d72523a Revert "power: supply: qti_battery_charger: Return time to full in seconds"
+53e8ef8f8f17 Revert "power: supply: xiaomi: Support WIRELESS_REVERSE_CLOSE"
+58bbdb142fe5 Revert "Revert "Revert "power: supply: qti_battery_charger: Add extcon support"""
+cfaf154469b1 Revert "Revert "Revert "power: qti_typec_class: Add typec class support for micro USB"""
+73a3068d2d58 Revert "Revert "Revert "power: supply: qti_battery_charger: Add dynamic uusb detection"""
+
+
+=======================
+     2024/03/11
+=======================
+
+* Repository: https://github.com/cupid-development/android_kernel_xiaomi_sm8450/commits/lineage-21
+
+16baeed55de2 ARM64: configs: Add mayfly config
+
+* Repository: https://github.com/cupid-development/android_kernel_xiaomi_sm8450-devicetrees/commits/lineage-21
+
+40b9ce2a9 arm64: dts: cape: Drop 90Hz timing for mayfly
+bab258c69 audio-devicetree: Enable swr haptics for mayfly
+
+
+=======================
+     2024/03/10
+=======================
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_sm8450-common/commits/udc
+
+cb2698d [WIP] sm8450-common: sepolicy: Drop hal_attribute_hwservice
+006fdae sm8450-common: Enable fast charging by default
+a9a883a sm8450-common: Evolution X bringup for zeus from LineageOS 21
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_zeus/commits/udc
+
+9b32388 zeus: Build with MIUI Camera from V816.0.2.0.ULBCNXM
+a3ef3ef zeus: Update build dependencies
+5094752 zeus: properties: Disable some forcing IMS features
+db93023 zeus: overlay: Commonise CarrierConfigResZeus
+
+* Repository: https://github.com/Evolution-X/packages_apps_Evolver/commits/refs/heads/udc
+
+896780d Evolver: Turn Ambient Music Ticker off by default
+f4f175e Evolver: Update links
+772566b New Crowdin updates (#514-#627)
+bb14738 Evolver: Make QS tile style and QS panel style exclusive
+6708ebe Evolver: Add QS Panel Style [3/3]
+57ab31c Evolver: Allow setting quick QS rows [2/2]
+087262d Evolver: Disable monet theme settings
+6f66f04 Evolver: A11 QS UI Style [3/3]
+92d2f86 Evolver: Add Brightness TextView [2/2]
+77ea7e7 Evolver: Add volume panel text style [2/2]
+f14853d Evolver: Add pulse ambient edge lightning settings
+631fde1 Evolver: Volume panel styles [3/3]
+4c28627 Evolver: Fix default lock clock fonts
+b9a4fb8 Evolver: Add more LS Clocks [2/2]
+5514597 Evolver: Show correct Font Styles on Dashboard
+366d831 Evolver: Introduce Lockscreen Style [2/2]
+
+
+=======================
+     2024/03/09
+=======================
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_zeus/commits/udc
+
+492e0c8 zeus: Evolution X bringup for zeus from LineageOS 21
+
+* Repository: https://github.com/Evolution-X/frameworks_base/commits/refs/heads/udc
+
+c9fe10e19460 PixelPropsUtils: Update fingerprints to March 2024 release
+d2cf2a0ffc9c SystemUI: Turn Ambient Music Ticker off by default
+
+
+=======================
+     2024/03/08
+=======================
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_sm8450-common/commits/udc
+
+52a5b1f sm8450-common: overlay: Enable burn in protection
+07fbee9 fixup! sm8450-common: Allow choosing NFC supported SKUs
+1cecfcf sm8450-common: Move default network property to vendor partition
+dee81df sm8450-common: Enable usage of dex2oat64
+85a8a1b sm8450-common: overlay: Drop MMS user agent overlays
+30b84f8 sm8450-common: overlay: Unpin updatable-media from memory
+0c1ddaf sm8450-common: overlay: Remove odex/oat files from pinner list
+7dcdd39 sm8450-common: overlay: Update SurfaceFlinger pin on all targets
+c943c2e sm8450-common: overlay: Set shutdown battery temperature
+d98cbb4 sm8450-common: overlay: Update from unicorn V816.0.3.0.ULECNXM
+bfe0122 sm8450-common: overlay: Add WifiResTarget_cape
+73cdad0 sm8450-common: overlay: Import xiaomi wifi changes for taro
+e97f965 sm8450-common: overlay: Restrict WifiResTarget to taro
+862e976 sm8450-common: Build Lineage Health HAL
+846eaba sm8450-common: Build Lineage PowerShare HAL
+59f1b80 sm8450-common: Drop unused powershare label
+061b1ef sm8450-common: Decommonize goodix_fod.ko
+956161f sm8450-common: Address marble denials
+47fd7f9 sm8450-common: Address marble fingerprint denials
+0281924 sm8450-common: Allow choosing NFC supported SKUs
+efc3a9b sm8450-common: keylayout: Disable single tap on fingerprint sensor
+cc66dc7 sm8450-common: Import fingerprint sensor keylayouts from marble V14.0.9.0.TMREUXM
+2c66faf sm8450-common: hidl: Add fingerprint extension HAL
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_zeus/commits/udc
+
+093af00 zeus: Decommonize CIT sensors
+7b0224c fixup! zeus: Update blobs from V816.0.2.0.ULBCNXM
+d36bb42 zeus: Drop vm-bootsys image
+9cf6756 zeus: Add goodix_fod module
+6d152df zeus: Update blobs from V816.0.2.0.ULBCNXM
+21f3f7b zeus: Decommonize sensors configs
+dafe64f zeus: Decommonize ADSP modules
+
+* Repository: https://github.com/LineageOS/android_hardware_xiaomi/commits/lineage-21
+
+e5a9512 vintf: Add fpc and goodix 1.0 extensions to fcm
+c682da8 vintf: Add fingerprint extension to common fcm
+
+* Repository: https://github.com/cupid-development/android_kernel_xiaomi_sm8450-devicetrees/commits/lineage-21
+
+2a2c92bb2 display-devicetree: Update marble nolp and doze commands from marble V816.0.3.0.UMRMIXM
+a671bad42 display-devicetree: Bump minimal brightness to 8 for all our devices
+0b2077f56 display-devicetree: Update marble nolp command from monrian V816.0.3.0.UMNMIXM
+9828e9b50 display-devicetree: Add qcom,mdss-dsi-nolp-command-update for mondrian
+0bb9cdc9f devicetree: Update marble eusb2-repeater peripheral mode seq
+
+* Repository: https://github.com/cupid-development/android_kernel_xiaomi_sm8450-modules/commits/lineage-21
+
+e71a77c871 msm: camera: flash: Proper QueryCapV1 Handling
+35f643e2bd Revert "Revert "msm: camera: flash: Proper handling of epcr reqs""
+06ba5bee79 Revert "Revert "msm: camera: flash: Reenabling Enable and Disable regulator support for PMIC flash""
+5da0351ac9 Revert "Revert "msm: camera: flash: Add support for flash stream off""
+29790320a0 camera_sensor_utils: Add support for WL2866D
+
+
+=======================
+     2024/03/07
+=======================
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_sm8450-common/commits/udc
+
+c33a07e sm8450-common: rootdir: Set more fingerprint permissions
+
+* Repository: https://github.com/Evolution-X/packages_apps_Settings/commits/refs/heads/udc
+
+d7575dc36b Settings: Update donate link
+
+
+=======================
+     2024/03/06
+=======================
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_sm8450-common/commits/udc
+
+bf0302e sm8450-common: Decommonize cit sensors
+f5dd5cc sm8450-common: Drop goodix_core.ko kernel module
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_zeus/commits/udc
+
+d41ef24 zeus: Import decommonized libQnnHtpAltPrepV69Stub.so
+713e594 zeus: Setup firmware extraction
+d8e2bd2 zeus: Move to QTI health AIDL service
+c0d8e54 zeus: cleanup blobs
+8113cfd zeus: Decommonize audio HAL
+f5af450 zeus: Decommonize AGM
+91824d8 zeus: Decommonize touch_report
+af0daa6 zeus: Add regulator, touch, haptics and audio kernel modules
+
+* Repository: https://github.com/cupid-development/android_kernel_xiaomi_sm8450/commits/lineage-21
+
+7e5022c6bfda wl2866d: Add missing function prototypes
+1fd20e5724ad input: touchscreen: goodix_9916: Add missing function prototypes
+
+
+=======================
+     2024/03/05
+=======================
+
+* Repository: https://github.com/Evolution-X/frameworks_base/commits/refs/heads/udc
+
+930d08f9f67c Revert "Fix AlarmManager high CPU issue"
+448b4b82d175 SystemUI: Add QS Panel Style [1/3]
+a8430ce8278b SystemUI: Set default landscape rows to 1
+f59991d6504d Allow setting quick QS rows [1/2]
+76d352ef0a62 SystemUI: Reduce tile label size for A11 QS
+63b3c7ba8dbd SystemUI: Fix QS tile dialog background color
+e7f57112c608 run full explicit GC in SystemUI and system_server after locking
+0202bcaf672c SettingsLib: Make all user apps cloneable [1/2]
+86c5d7bb660f SystemUI: fix duplicated creation of KeyguardStatusBarViewController
+a278d7da463c fixup! SystemUI: Implement hide gestural navigation hint bar
+7b9dead5bac6 SystemUI: Increase QS & QQS header Space for A11 QS style [1/2]
+05b9c839b2e0 SystemUI: Do not marquee QS label text
+8945805cc0c5 SystemUI: Fix adding wrong side view in QS
+14a806cae236 SystemUI: Use label vertical layout for A11 QS
+98312c7cf38a SystemUI: Remove unused QS panel custom padding
+cfc8ecd4c8ac SystemUI: Add A11 QS UI Style [1/3]
+b956a6b97251 base: core: Unregister broadcast receiver only when registered
+97aaf17626c5 SystemUI: Add Brightness TextView [1/2]
+ab689643ff0d SystemUI: Add Volume panel TextView [1/2]
+2f1d9e3546c2 BrightnessController: Update icon state for auto bg icon
+7df7a2f4247c base: Add ambient pulse notification
+bc3a8a7c96bb [SQUASH] SystemUI: Remove edge light customizations
+ac1e2a4fd5b2 base: Allow overlaying single tap gesture invocation delay
+c2cbbf7cd2e1 base: Stop the spamming of background start not allowed
+4e335dc043b2 fwb: Link more elements to `config_dialogCornerRadius `
+8213f81163e8 SystemUI: use default dialogCornerRadius for qs customize title
+547706af34e8 SystemUI: update powershare QS tile icon
+bbf8ef7c7bcf SystemUI: Define landscape height for aosp volume style
+a0848d81a357 SystemUI: Volume panel: disable row header for AOSP modified style
+4d40d3455987 SystemUI: Use a more common haptic effect for volume panel
+7891c12c3ecc SystemUI: Implement Volume Styles [1/3]
+0b608c2422ac IME attach to App should consider that letterboxed window
+1a71e15d3043 SystemUI: Filter out duplicate notification icons on statusbar
+056c02fd0fb4 wm: never consume statusbar in freeform mode
+75ef049dde96 Remove redundant broadcasts when adjusting volume on single volume devices
+2ae250c30dc2 Fix the bug of system app failing to load rros
+10d23c2d9c41 ApplicationPackageManager: Rearrange Tensor feature checks
+7e378df5a968 PixelPropsUtils: Unspoof backup and migrate apps
+82df5ba37198 PixelPropsUtils: Spoof chimera process to Pixel 5a
+0347db1a313d core: Gracefully handle unregistering of unregistered receivers/services
+ed371385e8bb SystemUI: Hide custom clocks by default
+9b4e7599c728 SystemUI: Fix user profile icon for custom clock 2
+f8000edd88d2 SystemUI: Custom clock style improvements
+0c7185a4101b Lockscreen Clock: Fix custom clock time updates
+910b2b00b282 SystemUI: Add more LS Clocks [1/2]
+994486016a76 SystemUI: Add support for Custom fonts for Custom LS Clocks
+0758ddfcb2dd Lockscreen Clock: Dedupe requestLayout() calls when updating status area layout
+275c057b7cb2 Introduce Lockscreen Style [1/2]
+7210251f0839 SystemUI: DataSwitchTile: Fix labels
+5fcfec6525b5 [SQUASH] SystemUI: Remove monet customization
+
+* Repository: https://github.com/Evolution-X/vendor_evolution/commits/refs/heads/udc
+
+2207dab5 DeviceConfig: Enable Cinematic wallpaper effects
+2a4d1405 themes: Add QS Panel Style [2/3]
+0f9d39f5 Update bootanimation for 5 year anniversary
+22312910 overlay: Nuke RepainterServicePriv
+
+
+=======================
+     2024/03/04
+=======================
+
+* Repository: https://github.com/Evolution-X/packages_apps_Settings/commits/refs/heads/udc
+
+94334dfd80 fixup! Settings: Make all user apps cloneable [2/2]
+
+
+=======================
+     2024/03/03
+=======================
+
+* Repository: https://github.com/Evolution-X/packages_apps_Settings/commits/refs/heads/udc
+
+cbbf724efb Handle mobile data on internet page during setup
+b962819cad fuelgauge: Fix screen on time usage report
+639df49646 Settings: Restart SystemUI on resolution change
+6de6cf1932 TopLevelBatteryPreferenceController: add null check
+51cb8b0443 Settings: Fix total RAM calculation
+cb6f158eb4 FingerprintSettings: Add proximity check awareness if supported
+f5244f6678 Settings: WifiTetherApBand: Fix NPE at updateDisplay
+abc3ca69d1 Settings: Phone ringtone setting for Multi SIM device [2/3]
+194934bdb9 Settings: deviceinfo: Extend Battery info page
+a2aaffd3dd Settings: Always restore keyChordPowerVolumeUp to mute...
+367457739e Settings: Add userRestriction for auto brightness
+c7e6c9621b Settings: Gesture nav: Add back launch menu action
+a079024388 Settings: Gesture nav: Add go forward action
+2cdb5cb1bd Settings: Gesture nav: Correctly disable left/right option when long swipe setting is disabled
+56a260098b Settings: Gestures nav: Add back show recents action
+acc6a7e4b4 Settings: Gesture nav: Remove timeout setting
+465cacd77d Settings: ScreenResolutionFragment: Restart SystemUI on res change
+fb066f0190 fuelgauge: Hide screen time since last full charge if not valid
+76b1e80515 DataProcessor: Do not skip and replace screen on component with screen on time
+b1681d3c42 Settings: Update default donation URL
+9aa0ab7acc New Crowdin updates (#381-#398)
+
+* Repository: https://github.com/Evolution-X/vendor_evolution/commits/refs/heads/udc
+
+7b599724 themes: Add A11 QS UI Style [2/3]
+d8e31d8b themes: Import more Signal & Wifi Icons
+046737d8 themes: Add Dora icon styles for wifi and signal
+65b67507 themes: Add Dora navbar style
+c371a0a0 themes: Add riceball icon shape
+17ea2c72 config: Allow SetupWizard Rotation in Tablets
+63f73e92 Disable mobiledata by default with sys prop
+
+* Repository: https://github.com/Evolution-X/vendor_pixel-framework/commits/refs/heads/udc
+
+c86b3e9 Revert "SettingsGoogle: Show extreme battery saver only if flipendo available"
+e9ca892 SettingsGoogle: Sync Battery info and SIM 2 Ringtone changes
+
+
+=======================
+     2024/03/02
+=======================
+
+* Repository: https://github.com/Evolution-X/hardware_qcom-caf_common/commits/refs/heads/udc
+
+aef3aea qcom: Set TARGET_BOARD_SUFFIX to conditional bengal_515 * We have some diff for new bengal_515
+6ad0581 qcom: Merge configs bengal SoC platform
+0731867 qcom: Split 4.19 SoC family * For some reason kona and bengal were splitted within Qualcomm, even though they are from the same "kernel family" * With that in mind let's split both HALs set for them
+9a39b22 qcom: Add support bengal 5.15 [1] mikeNG : Introduce os_pickup_sepolicy_vndr for sm6225
+1dfb66c qcom: Allow Skip common display vendor freezer through a condition * Vendor freezer is enabled for other SoC besides SM8450 on SM8550, just have S or T vendor blobs,   Example: sdm845, sdm660 and bengal-5.15.
+0dda9c6 qcom: Enable some condititions based on kernel version [1] - Bengal-5.15 is not part of 5_15_FAMILY and TARGET_BOARD_PLATFORM conflicts with 4.19, so allow conditions to be enabled when checking kernel version.
+
+* Repository: https://github.com/LineageOS/android_hardware_qcom_audio/commits/lineage-21.0-caf-sdm845
+
+6584f9dca audio_amplifier: Change the enable amplifier function location
+1bdcf072f hal: Support the audio amplifier hook
+bfe4e281b hal: Use correct mixer element size when setting channel map
+
+* Repository: https://github.com/LineageOS/android_packages_apps_Aperture/commits/refs/heads/lineage-21.0
+
+efed05d Aperture: Use smooth zoom for logical camera switch button
+fb2fb35 Aperture: QrImageAnalyzer: Fix views interaction on background thread
+e90283e Aperture: Reset zoom ratio on current cam click
+5b6e869 Aperture: Use the new ZoomGestureDetector
+9f443d6 Aperture: Import ZoomGestureDetector
+e5ea46c Aperture: Reformat code
+ea781be Aperture: Move camera manager to the view model
+4831db5 Aperture: Extract overlay configuration into a new class
+547cf2e Aperture: Move camera view model to .viewmodels
+8894751 Aperture: Use nonNullablePropertyDelegate for screen rotation LiveData
+e747a22 Aperture: Rework gallery button handling
+3ddff76 Aperture: Initial captured media flow
+d0a5228 Aperture: Bump gradle-generatebp to v1.7
+
+* Repository: https://github.com/Evolution-X/vendor_evolution/commits/refs/heads/udc
+
+4f8aaa50 themes: Implement Volume Styles [2/3]
+d74eba09 overlays: Add overlay for hiding smartspace view and adding offset
+
+
+=======================
+     2024/03/01
+=======================
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_sm8450-common/commits/udc
+
+09a5ff0 fixup! sm8450-common: Move to QTI health AIDL service
+
+* Repository: https://github.com/Evolution-X/frameworks_base/commits/refs/heads/udc
+
+07a2fcb3ac45 Ringtone picker to handle RESULT_CANCELED from Add ringtone
+c096519dbca1 PixelPropsUtils: Spoof realme link
+f0d5139d7c02 Revert "Add some fwb stubs from Oplus"
+6e469e75d0b0 [SQUASH] PixelPropsUtils: Various changes
+3d2a81fdeaa4 Fix uninstall for all users
+
+* Repository: https://github.com/Evolution-X/packages_apps_Evolver/commits/refs/heads/udc
+
+1c8fafa Evolver: Bring back flashlight on call options [3/3]
+9e1f22e Evolver: Move roaming toggle to SystemUI
+3a87fde Evolver: Bring back Snapchat spoof toggle [2/2]
+
+* Repository: https://bitbucket.org/evo-x/vendor_certification/commits/refs/heads/udc
+
+174ca0c certification: RIP Hisense
+
+* Repository: https://github.com/Evolution-X/vendor_evolution/commits/refs/heads/udc
+
+45939701 fonts: add Ios font for lockscreen Clock
+
+
+=======================
+     2024/02/29
+=======================
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_sm8450-common/commits/udc
+
+bf537bd sm8450-common: Patch citsensorservice to work with OSS libdisplayconfig.qti
+131b6bd sm8450-common: Update QtiTelephony and ims from unicorn V816.0.3.0.ULECNXM
+1db94b7 sm8450-common: Unpin display blobs
+5110f9a sm8450-common: Decommonize libQnnHtpAltPrepV69Stub.so
+2fa758a sm8450-common: gps: Reorder initialization lists again
+fccdfd5 sm8450-common: gps: Update to LA.VENDOR.1.0.r1-21900-WAIPIO.0
+5408f3c sm8450-common: vintf: update IImsFactory HAL
+ed272a8 sm8450-common: Update blobs from unicorn V816.0.3.0.ULECNXM
+6e8bbb5 sm8450-common: gpt-utils: Check ufs device first before checking partition names
+cf66df3 sm8450-common: gpt-utils: Address the warnings
+f4b956d sm8450-common: Stop building cameralog.ko
+0ec7e31 sm8450-common: Fix qcacld-3.0 module path
+
+* Repository: https://github.com/LineageOS/android_hardware_qcom_display/commits/lineage-21.0-caf-sm8450
+
+280cf939 gralloc: Fix retrieving metadata state
+fa2cd4dc fixup! display: fix remaining code issues
+49f9295b fixup! gralloc: drop unused variables
+355667e0 Merge tag 'DISPLAY.LA.2.0.r1-10700-WAIPIO.0' of https://git.codelinaro.org/clo/la/platform/hardware/qcom/display into lineage-21.0-caf-sm8450
+851d4ce5 fixup! display: s/PRODUCT_PROPERTY_OVERRIDES/PRODUCT_VENDOR_PROPERTIES/g
+1aae4927 Revert "gralloc: Conditionally revert changes related to gralloc struct"
+
+* Repository: https://github.com/cupid-development/android_kernel_xiaomi_sm8450/commits/lineage-21
+
+6bc8a7a35cca fixup!: ARM64: configs: Add cupid, marble, mondrian, unicorn and zeus config
+
+* Repository: https://github.com/cupid-development/android_kernel_xiaomi_sm8450-devicetrees/commits/lineage-21
+
+a63c7698f devicetree: xiaomi-sm7475-common: Overwrite hv-haptics voltage
+945d9b6e7 display-devicetree: panel-m16t-36-{02,0d}-{0a,0b}-dsc-vid: Disable 30Hz
+a7ce925c3 devicetree: Align marble gt9916r dts with driver
+adbc076b6 devicetree: Fix marble pm8008j voltages
+2cdb86ce6 camera-devicetree: Add support for marble from MIUI V14.0.7.0.TMRMIXM
+fc7b0db34 display-devicetree: Add support for marble
+3a433cf8b audio-devicetree: Add support for marble
+dd33203d6 devicetree: Add support for marble
+f4cc57ba4 devicetree: waipio: Disable spss remote processor
+ae94f994b display-devicetree: Add nolp command update from unicorn V816.0.3.0.ULECNXM
+441cd6314 display-devicetree: Update m16t gamma switch commands from unicorn V816.0.3.0.ULECNXM
+a77bbc8c8 camera-devicetree: Add qcom,csiphy-v2.1.3-xiaomi-m11a for mondrian
+7f1a27c6d camera-devicetree: Disable build for diting and zizhan
+d02ac16fd camera-devicetree: Add support for thor, zizha, diting, mayfly, unicorn and mondrian from ziyi-s-oss
+5b8f92dc0 camera-devicetree: Add support for mondrian from MIUI V14.0.5.0.TMNMIXM
+a10395713 audio-devicetree: Add support for mayfly, unicorn and thor
+e95affc5b audio-devicetree: Add support for mondrian
+279e9baf4 audio-devicetree: Decommonize swr haptics disable
+74b7c509c display-devicetree: Correct physical panel dimensions
+846f71066 display-devicetree: Match mondrian V14.0.5.0.TMNMIXM
+7c5270652 display-devicetree: Add support for thor, unicorn, mondrian and mayfly
+090d4a42b [DECOMMONIZE?] Change qcom hv-haptics values for mondrian
+96dc9276d mondrian: Add reset-gpio to aw882x_smartpa
+1b04afa0c qcom: Enable mayfly, unicorn and thor
+84ceb8bde Disable build except for cupid, zeus and mondrian
+b84993d03 Add support for mayfly, mondrian, thor and unicorn
+
+* Repository: https://github.com/cupid-development/android_kernel_xiaomi_sm8450-modules/commits/lineage-21
+
+0e7a5d626a disp: msm: dp: modify hdcp wait loop to not add to cpu load
+424700cd2c disp: msm: sde: move some frame_events from crtc commit to event thread
+738027ec6f disp: msm: sde: wait for pending vsync event on pm_suspend
+df09b5e7d7 disp: msm: sde: wait for pending vsync event in encoder disable
+8b16aaa114 display-drivers: Skip setting doze brightness if panel is not initialized
+816f3e9c6f display-drivers: mi_disp: Optimize for marble's 36_0d_0b screen panel
+6a9c5e4174 display-drivers: Optimize for marble's 36_02_0a screen panel
+aeafb38a6a camera-kernel: Add support for m16t csiphy
+
+* Repository: https://github.com/LineageOS/android_packages_apps_Aperture/commits/refs/heads/lineage-21.0
+
+3c9a0c0 Aperture: Reformat code
+958af00 Aperture: Update icons from Material Icons
+78db13a Aperture: Implement screen flash
+3cfe9a0 Aperture: Remove RED_EYE mentions
+f3fbb59 Aperture: Use `onCaptureStarted()` for shutter sound and UI update
+
+
+=======================
+     2024/02/28
+=======================
+
+* Repository: https://github.com/Evolution-X/frameworks_base/commits/refs/heads/udc
+
+3abd58263370 base: Add DND & Rate settings to flash on call [1/3]
+f5426f05e794 base: Add Flashlight blink on incoming calls [1/3]
+09ccadb40400 Fix: "Clear All" recent app screen loop bug
+55fdc0ed095f SystemUI: enable fading squiggle animation of qs media player
+f13883191a59 GamesPropsUtils: Update packages list
+7133d272da8d Remove unused UDFPS_ANIM settings
+7e2c6206d70a Don't skip process group creation for system_server
+d3161d18c818 OverlayManagerService: add a new thread to handle user receiver
+2c5a4ae9e0f0 Check for Location Feature and GNSS HAL Support
+256ee4f0b0e5 fixup! base: Add support for app lock
+627e2cb746d5 Fix unknown sources app install confirmation
+
+* Repository: https://github.com/cupid-development/android_kernel_xiaomi_sm8450/commits/lineage-21
+
+cc40bbd531ac Revert "Revert "power: supply: qti_battery_charger: Add dynamic uusb detection""
+3fdffc65de50 Revert "Revert "power: qti_typec_class: Add typec class support for micro USB""
+beb171e6569f Revert "Revert "power: supply: qti_battery_charger: Add extcon support""
+047317d135b8 Revert "Revert "msm: ADSPRPC: Check PD status before attach request""
+62384f23bc8f input: touchscreen: goodix_9916: Rename module to gt9916
+6ba183c3f45c smcinvoke: Rename size_add to smci_size_add
+5e49428f56e3 thermal: Drop unused variables
+45e0b65a8e6e [HACK] arm64: configs: gki: Disable pointer auth
+8ec9bc195201 modules.list.msm.waipio: Remove modules which are not built
+d5a342430210 modules.list.msm.waipio: Add hwid.ko to modules
+cc606792d42d ARM64: configs: gki: Switch to thin LTO
+ee27028fa5e3 ARM64: configs: xiaomi: Build separated soc-dtb and board-dtbos
+7f4eceb5e87c ARM64: configs: Add cupid, marble, mondrian, unicorn and zeus config
+b17039e73a88 ARM64: dts: vendor: Add symlink to sm8450-devicetrees
+4b09551b2a7d Revert "msm: ADSPRPC: Check PD status before attach request"
+39258ebbf8dd input: misc: qcom-hv-haptics: Scale vibration strength on full range
+3c381eb28916 input: misc: qcom-hv-haptics: Import changes from mondrian-s-oss
+0fd3918241d8 input: misc: Checkout qcom-hv-haptics to 43425e23eccc9ef731f6859480bc562f54833c78
+7892bfbf03d9 soc: qcom: smp2p_sleepstate: Decrease wakeup event length
+a70e3cfe8315 media: rc: Import xiaomi changes from mayfly-s-oss
+2c18fc92d100 nfc: qti: Import xiaomi changes from mayfly-s-oss
+bf4a1849b234 spi: spi-msm-geni: Increase xfer timeout
+78e85b1153b6 power: supply: xiaomi: Support WIRELESS_REVERSE_CLOSE
+5f44051287e9 power: supply: qti_battery_charger: Return time to full in seconds
+f30c70277484 power: supply: qti_battery_charger: Return charge counter in uAh
+3bd5959b53b9 Revert "power: supply: qti_battery_charger: Add extcon support"
+800b49b31126 Revert "power: qti_typec_class: Add typec class support for micro USB"
+7e159730a998 Revert "power: supply: qti_battery_charger: Add dynamic uusb detection"
+0036489e1a3c power: supply: qti_battery_charger: Add missing type specifiers
+7c6f7378bd22 power: supply: qti_battery_charger: Import xiaomi changes
+d2fc6e77704b power: supply: qti_battery_charger: Create header for defines, enums and structs
+bad19c5c566c power: reset: Import xiaomi changes from mayfly-s-oss
+d0d02179caf4 usb: Import xiaomi changes from mayfly-s-oss
+8651a65bcfc5 net: wireless: cnss2: Update xiaomi changes from garnet-t-oss
+c3d685e4f946 net: wireless: cnss2: Import xiaomi changes from mayfly-s-oss
+2ae722dfcc6d Import xiaomi mtd changes from mayfly-s-oss
+7747d5df44df soc: qcom: fsa4480: Use mmhardware
+dba041536920 misc: Import mmhardware
+387be35c8052 leds: Import aw22xxx driver from mayfly-s-oss
+541fbf775941 thermal: mi_thermal_interface: Add prototypes to function declarations and add missing type specifiers
+39d62174cf34 thermal: Import xiaomi changes from ziyi-s-oss
+60a98100f5dc arm64: Add config option for wl2866d camera
+2d7080bdacec misc: Import wl2866d from mondrian-s-oss
+f527b5cf8f0b regulator: Import wl2866d driver from mayfly-s-oss
+973628b32b0e input: touchscreen: goodix_9916r: Add missing prototypes
+226a2202c878 input: touchscreen: goodix_9916r: Integrate properly with PM suspend
+45f6d2a96b0e input: touchscreen: goodix_9916r: Hook up xiaomi_touch double tap
+a699db2cdaa3 input: touchscreen: goodix_9916r: Clean up and add support for marble
+815c41081224 input: touchscreen: Import goodix 9916r driver from gold-s-oss
+d2cc24381164 [WIP] input: touchscreen: goodix_9916: Reverse from stock module
+bf7a1ef07384 input: touchscreen: goodix_9916: Import new touch headers from M11
+cbb43c617778 input: touchscreen: Import goodix_9916 from yudi-t-oss
+bed962031b69 input: touchscreen: fts_spi: Change enable_touch_raw argument to int
+e52b9036e0b2 input: touchscreen: fts_spi: Add prototypes to function declarations and add missing type specifiers
+326d2aa45a6e input: touchscreen: fts_spi: Fix potential buffer overflows
+0dd8adf12973 input: touchscreen: fts_spi: Remove unused get_slot_trackingId method
+f3afbc7d7f10 input: touchscreen: fts_spi: Change fts_enable_click_touch_raw to return int
+49f12cfbe3c5 input: touchscreen: fts_spi: Move back to enable_clicktouch_raw
+9db159f4b2bc input: touchscreen: fts_spi: Revert knock_data to touch raw data
+68c122a59c3b input: touchscreen: fts_spi: Implement THP support
+233b8f591886 input: touchscreen: fts_spi: Update headers according to driver changes
+8b3feac7f2e4 input: touchscreen: fts_spi: Add missing cmd_fifo device attr
+0982398ee5f3 input: touchscreen: fts_spi: Guard touch_irq_boost
+17c3df7aa003 input: touchscreen: Import fts_spi driver from mayfly-s-oss
+d063775c1be7 input: touchscreen: xiaomi: Add prototypes to function declarations
+ece512e186d6 [WIP] input: touchscreen: xiaomi: Reverse from stock module
+93250170f8ad Revert "input: touchscreen: xiaomi: Implement touch_thp_film"
+2ecbc6be1670 input: touchsreen: xiaomi: Import updated header from M11
+c5714076464b input: touchscreen: xiaomi: Implement touch_thp_mem_notify
+f2288292c538 input: touchscreen: xiaomi: Implement touch_thp_film
+e38f098636c0 input: touchscreen: xiaomi: Implement palm_sensor_data
+f8a518819656 Revert "input: touchscreen: xiaomi: Change enable_touch_raw to work with int"
+51786bb53d0d Revert "input: touchscreen: xiaomi: Drop clicktouch_raw"
+e0c53bf5d6ce input: touchscreen: xiaomi: Implement tp_hal_version
+79d395a1ea99 input: touchscreen: xiaomi: Implement touch_irq_no
+17be4460a582 input: touchscreen: xiaomi: Implement finger_status
+59b00afcf6f1 input: touchscreen: xiaomi: Implement touch_active_status
+21d302c5e76a input: touchscreen: xiaomi: Add XIAOMI_TOUCH_UTC_PRINT
+af68f0360dc7 input: touchscreen: xiaomi: Add more THP mode types
+5358161966ea input: touchscreen: xiaomi: Change enable_touch_raw to work with int
+c4891ee0a55b input: touchscreen: xiaomi: Implement thp_cmd_data
+cd2849214549 input: touchscreen: xiaomi: Move xiaomi_touch_set_suspend_state up
+7caada3ba707 input: touchscreen: xiaomi: Drop clicktouch_raw
+48c11cf520a9 input: touchscreen: xiaomi: Implement resolution_factor
+084670a458d7 input: touchscreen: Import xiaomi touch driver from mayfly-s-oss
+9108a1c0b32c drivers: input: misc: aw86927_haptic: Replace mtk with qcom properties
+4a570be4202b input: misc: Imort aw86927_haptic driver from mayfly-s-oss
+666838038b48 input: misc: Import aw8698_haptic driver from mayfly-s-oss
+58c7be660d62 input: Import stmvl53l5 driver from zeus-s-oss
+b94c9aeac1c9 input: fingerprint: Import goodix_3626 from marble-s-oss
+44c066c956ea input: fingerprint: Import fpc_1540 from marble-s-oss
+
+* Repository: https://github.com/cupid-development/android_kernel_xiaomi_sm8450-devicetrees/commits/lineage-21
+
+0cd664c53 display: waipio: Nuke 90Hz timing for cupid
+ec261ed73 display: Set proper framerate for 10 and 1 hz on zeus
+16fe3c919 display: Add support for cupid and zeus
+24add7e14 camera: Add qcom,csiphy-v2.1.0-xiaomi-l2 for zeus
+c2b265932 camera: Add support for cupid and zeus
+287e34109 audio: Add support for cupid and zeus
+ec6dc930b devicetree: Add support for cupid and zeus
+326f14a90 qcom: Build dtbos inline
+fc66b051b Add 'qcom/video/' from commit '2ba6748b22ae6ccb3525d7ddc31ad902fc1f67dc'
+53474323b Add 'qcom/mmrm/' from commit '7058e361bdcb13515851f867fcaa5fba2dbaa770'
+55b7592fa Add 'qcom/eva/' from commit '8bcaad95badd34de670bf10a65900690aff228b7'
+903e8092f Add 'qcom/display/' from commit 'd918d6e366ff9578f52521fe9f297ac7fde38e88'
+fa40ae2cc Add 'qcom/cvp/' from commit '884c606682bc5bda4da3fb5090f0adf428ad0746'
+60ad87d69 Add 'qcom/camera/' from commit 'a252642c73b33721a2d950dabe1e515c68a810f9'
+742920cdb Add 'qcom/audio/' from commit 'c6eac8f81e08f67a4ed0eab7d22a583155da180c'
+
+* Repository: https://github.com/cupid-development/android_kernel_xiaomi_sm8450-modules/commits/lineage-21
+
+d6ecbda74d cam_ois: Update from garnet-t-oss
+
+* Repository: https://github.com/Evolution-X/packages_services_Telecomm/commits/refs/heads/udc
+
+db898ccb8 Ringer: Rewrite flashlight blink on incoming calls
+0187788a0 Ringer: There should really not be an observer here
+1ee233f3f Telecomm: Add DND & Rate settings to flash on call [2/3]
+2f159484e Telecomm: Allow to flash on call only when entirely silent [2/3]
+1e6fa61f8 Telecomm: Add Flashlight blink on incoming calls [2/3]
+
+* Repository: https://github.com/Evolution-X/vendor_evolution/commits/refs/heads/udc
+
+20260a2b tools: merge_dtbs: Respect miboard-id while merging
+90314228 config: Add BCR only for devices with telephony
+
+
