@@ -1,0 +1,516 @@
+
+2024-03-19
+
+
+IMPORTANT NOTES:
+
+1.  HyperOS V816.0.2.0.ULBCNXM firmware and vendor blobs are included
+    by default since 2024-03-12 build. NO NEED TO FLASH FIRMWARE TO USE THIS BUILD.
+2.  There will be a lot of screen jittering/lagging if you have not set the
+    minimum refresh rate to 24Hz. To solve this issue, simply go to
+    Settings > Display > Minimum refresh rate > set to 24Hz.
+3.  KernelSU is supported by default. To enable KernelSU, simply download
+    the KernelSU manager (APK file) via the following link:
+    https://github.com/tiann/KernelSU/releases/download/v0.8.1/KernelSU_v0.8.1-20-gdbe43b1_11583-release.apk
+    Please note that although KernelSU is supported by default, it is NOT USED 
+    BY DEFAULT, therefore the KernelSU simply sits there in the kernel doing
+    nothing, so there will be no performance overhead, every app won't be able
+    to detect root and it won't conflict with Magisk (unless you chose to install
+    KSU modules, where KSU modules will cause conflict with Magisk modules).
+
+Device side changes:
+
+  * Leica MIUI Camera (patched from HolyBear's APK) is now included by default :)
+    Original source: https://github.com/a406010503/Miui_Camera/releases/download/Miui_Camera_4.5.002540.1_231015/Magisk-MIUI_Camera-v231015-release.zip
+  * The low quality output image via MIUI Camera is also fixed as well.
+  * Per-app thermal profile, per-app refresh rate, Mi Sound Enhancer and clear speaker is now available in the settings.
+
+
+Detailed ROM, device and kernel side changes:
+
+=======================
+     2024/03/19
+=======================
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_sm8450-common/commits/udc
+
+2853bd4 [TEMP] sm8450-common: Disable new fod implementation
+a7eff6f sm8450-common: Address sepolicy denial that causes low resolution captured image via MiuiCamera
+e3b2067 sm8450-common: Remove unused Dialer overlays
+66d4950 sm8450-common: parts: Import from xiaomi_sdm845-common
+15c1486 sm8450-common: config: Update sf duration to 15.6 ms
+77fe06c sm8450-common: config: Move from phase offsets to work durations
+4066615 sm8450-common: udfps: Don't try to read with a negative length
+08a86fa sm8450-common: udfps: Enable fod_status on finger down events instead for fpc_fod
+
+* Repository: https://github.com/Evolution-X/frameworks_base/commits/refs/heads/udc
+
+15fcf79a50fb Fix default values for 5G Ultra Wideband icon carrier config keys
+
+* Repository: https://github.com/LineageOS/android_hardware_xiaomi/commits/lineage-21
+
+00c40b7 Revert "hidl: biometrics: fingerprint: Add enroll methods to udfps handler"
+c449be4 hidl: biometrics: fingerprint: Add enroll methods to udfps handler
+a75b81a sensors: Handle fod press status without coordinates
+f2be8e0 sensors: Add udfps long press sensor
+11078cc sensors: Fix locking around setOperationMode and activate
+754c78c sensors: Move one shot sensor out of main class
+cfe83cf sensors: Make sensor set mode operation function virtual
+d62b6b7 sensors: Make sensor flush function virtual
+db5ef1a sensors: Make sensor run function virtual
+0f29292 sensors: Make sensor batch function virtual
+3e1e257 Add dummy sensors sub HAL
+
+* Repository: https://github.com/Evolution-X/packages_apps_Evolver/commits/refs/heads/udc
+
+5d9c424 New Crowdin updates (#630)
+
+
+=======================
+     2024/03/18
+=======================
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_zeus/commits/udc
+
+8bc084f zeus: Set to true for MIUI Camera specific flags
+
+
+=======================
+     2024/03/17
+=======================
+
+
+=======================
+     2024/03/16
+=======================
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_sm8450-common/commits/udc
+
+5e83539 sm8450-common: Enable fast charging by default
+b446bdd sm8450-common: Evolution X bringup for zeus from LineageOS 21
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_zeus/commits/udc
+
+9f69182 zeus: overlay: Decommonize brightness overlays
+220121d zeus: Import displayconfig to control HBM
+b1459d3 fixup! zeus: cleanup blobs
+
+
+=======================
+     2024/03/15
+=======================
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_sm8450-common/commits/udc
+
+09188e3 sm8450-common: Add support for thor
+642a2c1 sm8450-common: udfps: Disable HBM directly on successfull authentication
+c181cc5 sm8450-common: overlay: Decommonize brightness overlays
+d1b52bf sm8450-common: udfps: Change verbose logging to DEBUG
+e7fd114 sm8450-common: udfps: Inform hwmodule about press coordinates
+f417b31 sm8450-common: udfps: Use 110 nit fod when the brightness is low
+59c6cc7 sm8450-common: udfps: Add comments about setFingerDown usage
+b32b6cc sm8450-common: udfps: Drop unnecessary setFingerDown on cancel
+32bc158 sm8450-common: udfps: Defer extCmd until fod ui is ready
+6549215 sm8450-common: udfps: Move HBM requests to fod press status listener
+2fa9fa1 sm8450-common: udfps: Correct vendorCodes
+34d1f56 sm8450-common: udfps: Improve fod press poll logging
+107d61a sm8450-common: udfps: Use MI_DISP_PRIMARY as touch id
+7094e19 sm8450-common: udfps: Enable HBM via disp_feature
+f8e3dd5 sm8450-common: udfps: Keep fod_status enabled during enroll
+
+* Repository: https://github.com/cupid-development/android_kernel_xiaomi_sm8450/commits/lineage-21
+
+c2f80badca41 ARM64: configs: Add thor config
+1bade6b6a770 misc: hwid: L1A is loki
+c0661c5fcde3 input: touchscreen: xiaomi: Get rid of notify buf spam
+9f0a32e5ddd6 input: touchscreen: goodix_9916: Don't notify about fod presses when fod_status is off
+
+* Repository: https://github.com/cupid-development/android_kernel_xiaomi_sm8450-devicetrees/commits/lineage-21
+
+1c9f9512 audio: mayfly: Enable swr haptics
+10b63b78 audio: thor: Disable swr_haptics
+07c98896 display: Bump minimal brightness to 8 for all our devices
+71338bba display: Correct physical panel dimensions for our devices
+a79eac1d display: marble: Update nolp and doze commands from marble V816.0.3.0.UMRMIXM
+8402c4f7 display: marble: Update nolp command from mondrian V816.0.3.0.UMNMIXM
+de70ac92 display: marble: Update from unicorn V816.0.3.0.ULECNXM
+4ee6985e display: marble: Disable 30Hz timing
+5dc0e08b display: marble: Update gamma switch commands from unicorn V816.0.3.0.ULECNXM
+a82ca932 display: Add support for POCO F5/Redmi Note 12 Turbo (marble|M16T)
+2573f90e display: mondrian: Add qcom,mdss-dsi-nolp-command-update from mondrian V816.0.3.0.UMNMIXM
+b556f2ce display: mondrian: Commonize lp and local hbm commands for all timings
+6e2de989 display: mondrian: Update from V14.0.5.0.TMNMIXM
+7a367fd7 display: Add support for POCO F5 Pro/Redmi K60 (mondrian|M11A)
+74985268 display: mayfly: Drop 90Hz timing
+9b6696ea display: Add support for Xiaomi 12S (mayfly|L3S)
+ef6bbe9e display: zizhan: Update from unicorn V816.0.3.0.ULECNXM
+dbf0c267 display: Add support for Xiaomi MIX Fold 2 (zizhan|L18)
+daa61e51 display: unicorn: Update from unicorn V816.0.3.0.ULECNXM
+619f7ed7 display: Add support for Xiaomi 12S Pro (unicorn|L2S)
+7ca10e09 display: thor: Update from unicorn V816.0.3.0.ULECNXM
+d9976f6c display: Add support for Xiaomi 12S Ultra (thor|L1)
+5542f7ef display: Add miboard id to cape reference board
+296c23a9 display: cape: Enable sde wakup with touch
+e5bb3691 display: cape: Enlarge disp rdump region
+c9273edb display: cupid: Nuke 90Hz timing
+e90e3b3b display: Add support for Xiaomi 12 (cupid|L3)
+463fc06b display: zeus: Set proper framerate for 10 and 1 hz
+bde3f727 display: Add support for Xiaomi 12 Pro (zeus|L1)
+8d7ad3f2 display: Add miboard id to waipio reference board
+0e69aae5 display: waipio: Enable sde wakup with touch
+4b2fd950 display: waipio: Enlarge disp rdump region
+3f141865 display: waipio: Add vci panel regulator
+0a4b1aed camera: Add support for POCO F5/Redmi Note 12 Turbo (marble|M16T)
+697fb5ed camera: Add support for POCO F5 Pro/Redmi K60 (mondrian|M11A)
+a5d9a6f5 camera: Add support for Xiaomi 12S (mayfly|L3S)
+6329f02f camera: Add support for Xiaomi 12 Ultra (thor|L1)
+8fb0f2c7 camera: Add support for Xiaomi 12S Pro (unicorn|L2S)
+fac85503 camera: Add support for Xiaomi 12 (cupid|L3)
+1e3ba880 camera: Add support for Xiaomi 12 Pro (zeus|L1)
+10a10915 camera: Update iova memory regions for cape
+0c84839d camera: Decommonize active and suspend rst0 from waipio-camera
+ab72b83d camera: Add miboard id to cape, ukee and waipio reference boards
+6fc231d0 audio: Add support for POCO F5/Redmi Note 12 Turbo (marble|M16T)
+891e5766 audio: Add support for POCO F5 Pro/Redmi K60 (mondrian|M11A)
+1294124d audio: Add support for Xiaomi 12S (mayfly|L3S)
+a332ba4e audio: Add support for Xiaomi 12S Ultra (thor|L1)
+d7f787a8 audio: Add support for Xiaomi 12S Pro (unicorn|L2S)
+42214759 audio: Add support for Xiaomi 12 (cupid|L3)
+2cff1ef7 audio: Add support for Xiaomi 12 Pro (zeus|L2)
+28d8beea audio: Add miboard id to cape, ukee and waipio reference boards
+57c1bbe4 audio: Add xiaomi-sm8450-common configuration
+ea504086 Add support for POCO F5/Redmi Note 12 Turbo (marble|M16T)
+a6a849f2 Add xiaomi-sm7475-common configuration
+95e8564e Add support for POCO F5 Pro/Redmi K60 (mondrian|M11A)
+51208bae Add support for Xiaomi 12S (mayfly|L3S)
+66f0afbe Add support for Xiaomi 12S Ultra (thor|L1)
+2b48b025 Add support for Xiaomi 12S Pro (unicorn|L2S)
+3cbf411d Add xiaomi-sm8475-common configuration
+79d2e066 Add support for Xiaomi 12 (cupid|L3)
+ce9398ac Add support for Xiaomi 12 Pro (zeus|L2)
+25f807c7 Add xiaomi-sm8450-common configuration
+365b1f73 waipio: Disable qcom,fsa4480-i2c
+d1f16f12 waipio: Disable qbt handler
+348eea39 waipio: Enable nv-mac
+616b44f5 waipio: Adjust wlan aon and dig config
+1cd1940c waipio: Adjust high bus bandwidth voting data
+2b65f316 waipio: Add rf clk3 clocks to qca6490
+588031f3 waipio: Disable ramoops memory region
+85c087f2 waipio: Enlarge adsp and xbl ramdump memory regions
+16334407 waipio: Disable trust ui and oem vm memory regions
+05676f98 waipio: Disable spss remote processor
+3f96ad31 waipio: Add i2c 0-4 aliases
+3d77e1fe waipio: Remove mem-offline
+ff83fa99 waipio-usb: Remove edu_enable_reg
+6ec643b7 waipio-thermal: Remove {cx,mx}_sdpm
+6fdef0e0 waipio-thermal-overlay: Remove xo-therm
+d72f3ed0 waipio-regulators: Add ldoc11 regulator
+2af61763 waipio-pmic-overlay: Move tof therm to pm8350b
+34e681c3 waipio-pmic-overlay: Decomonize thermal zones
+f822c051 waipio-pmic-overlay: Add pwrkey bark
+dbe02506 waipio-pm8008: Adjust regulator voltages
+28b815cc waipio-pinctrl: Decrease drive strength on tert tdm clk active
+b471152d waipio-pinctrl: Enable pull down on usb3phy portselect default
+9af4cd72 waipio-pinctrl: Add zeus, cupid and thor uart pins
+6803d700 waipio-pcie: Disable pcie1 and pcie1_msi
+39181f63 Add miboard-id to waipio reference boards
+a40db348 pmk8350: Remove xo-therm
+e105fefa pm8350c: Disable qcom,hw-strobe-gpios
+4539fcc7 pm8350b: Disable thermal-sensors for socd
+956fc5f1 pm8350b: Decrease initial resonance period for LRA actuator
+663eb603 pm8350b: Decrease qcom hv-haptics max voltage
+31875fc3 cape: Disable rtc6226
+b999b560 cape: Disable ramoops region
+f3ff12cf cape: Add i2c{0-5} aliases
+9991fffb cape: Disable mem-offline
+998f4c4b cape: Disable spss remote processor
+b5351266 cape-usb: Set maximum-speed to high-speed
+64fab39c cape-usb: Disable USB2 HW LPM for gadget mode
+839ee86b cape-usb: Disable display port
+5a5150cf cape-reserved-memory: Disable trusted ui vm region
+67e3a026 cape-reserved-memory: Enlarge adsp and xbl ramdump regions
+cad47d20 cape-regulators: Add ldoc1, ldoc11 and ldoh4 regulators
+fa04b9c2 cape-pmic-overlay: Add pwrkey bark
+1cb5e866 cape-pmic-overlay: Move tof therm to pm8350b
+7fc3143a cape-pmic-overlay: Decommonize thermal zones
+eb019986 cape-pinctrl: Add thor uart pins
+15151f0c cape-pinctrl: Enable pull down on usb3phy portselect default
+5d1ff18f cape-pinctrl: Enable pull down on tert dtm dout active
+05287cdc Add miboard-id to cape reference boards
+
+* Repository: https://github.com/cupid-development/android_kernel_xiaomi_sm8450-modules/commits/lineage-21
+
+758b09c5dd display: mi_disp: Allow partial reads
+242555c91f display: mi_disp: Move fod_ui_ready_state to uapi headers
+
+* Repository: https://github.com/Evolution-X/packages_apps_Evolver/commits/refs/heads/udc
+
+66a72c8 New Crowdin updates (#629)
+
+* Repository: https://git.mainlining.org/cupid-development/proprietary_vendor_xiaomi_sm8450-common/commits/lineage-21
+
+f021247 sm8450-common: Add support for thor
+
+* Repository: https://git.mainlining.org/cupid-development/proprietary_vendor_xiaomi_zeus/commits/lineage-21
+
+0254915 zeus: Import displayconfig to control HBM
+
+
+=======================
+     2024/03/14
+=======================
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_sm8450-common/commits/udc
+
+f878c5c sm8450-common: sepolicy: Add rules for fpc fod
+27225fb sm8450-common: Set radio build profile to u-stable
+e0cb42b sm8450-common: Enable radio ecc_cloud
+4085428 sm8450-common: Enable TDES support when Keymaster 4.0 is enabled
+e15f516 sm8450-common: display: Set debug.sf.auto_latch_unsignaled to 0
+7fbd007 sm8450-common: Disable frame rate override feature
+1197820 sm8450-common: Disable redir_party_num
+ebf2df4 fixup! sm8450-common: overlay: Update from unicorn V816.0.3.0.ULECNXM
+
+* Repository: https://github.com/Evolution-X/frameworks_base/commits/refs/heads/udc
+
+8dafdd579b84 Revert "PixelPropsUtils: Spoof realme link" * App crashes
+
+* Repository: https://github.com/Evolution-X/vendor_evolution/commits/refs/heads/udc
+
+6e7fb2e6 Themes: Add more Brightness Slider from Iconify Credit - https://github.com/Mahmud0808/Iconify
+
+* Repository: https://git.mainlining.org/cupid-development/proprietary_vendor_xiaomi_sm8450-common/commits/lineage-21
+
+2fdc977 sm8450-common: Disable redir_party_num
+
+
+=======================
+     2024/03/13
+=======================
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_sm8450-common/commits/udc
+
+ec6e065 sm8450-common: Pin hotword blobs from global rom
+1169aee sm8450-common: sepolicy: Relax xiaomi camera postproc rules
+
+* Repository: https://github.com/cupid-development/android_kernel_xiaomi_sm8450/commits/lineage-21
+
+7d48f2e60dfc power: supply: qti_battery_charger: Return time to full in seconds
+4b94e446292b power: supply: qti_battery_charger: Return charge counter in uAh
+d99634e46b20 power: supply: qti_battery_charger: Add missing type specifiers
+1a9e3ac11249 power: supply: qti_battery_charger: Add support for 33W reverse wireless charging
+f3cb9d990466 power: supply: qti_battery_charger: Add support for display port
+7b2f64f7e3d6 power: supply: qti_battery_charger: Add config to match m81 module
+da9d65d7d626 power: supply: qti_battery_charger: Replace MI_CHARGE_PROPERTY with MI_WLS_REVERSE_CHG_ONLY
+c4330a4567a1 power: supply: xiaomi: Support WIRELESS_REVERSE_CLOSE
+34048701f8e7 power: supply: qti_battery_charger: Update from garnet-t-oss
+
+* Repository: https://github.com/cupid-development/android_kernel_xiaomi_sm8450-devicetrees/commits/lineage-21
+
+af0f3b4c qcom: Build dtbos inline
+2af1fceb Add 'qcom/video/' from commit 'e714f340cf0f89292e239aa61b4d46bcf8b02d2d'
+29dc3a0f Add 'qcom/mmrm/' from commit 'af7bafc2498b275b824be0fd03d6b3ba94c3da3e'
+52bbfe73 Add 'qcom/eva/' from commit 'a3153273860440c57849947e04d27a6b804f6823'
+ecbff50b Add 'qcom/display/' from commit 'e67350bb03f423f3f243da976f4875c908515cb2'
+43dff211 Add 'qcom/cvp/' from commit '4efcada65dcc99973361f00fa217d505a6b73332'
+45d72fd7 Add 'qcom/camera/' from commit '1d693f07b5936abbca9670e6ced33cd09a11bc71'
+0b70f725 Add 'qcom/audio/' from commit '1577f7c52b9f8ab17097946a6710b0512165ed78'
+a3153273 LA.VENDOR.1.0.r1-23100-WAIPIO.QSSI14.0
+
+* Repository: https://git.mainlining.org/cupid-development/proprietary_vendor_xiaomi_sm8450-common/commits/lineage-21
+
+c787ca3 sm8450-common: Add hotword blobs from cupid V816.0.3.0.ULCEUXM
+
+
+=======================
+     2024/03/12
+=======================
+
+* Repository: https://github.com/cupid-development/android_kernel_xiaomi_sm8450/commits/lineage-21
+
+767b25eb7937 power: supply: qti_battery_charger: Import xiaomi changes
+251df3c54268 Revert "power: supply: qti_battery_charger: Import xiaomi changes"
+145d64879692 Revert "power: supply: qti_battery_charger: Add missing type specifiers"
+d7bba7e99af5 Revert "Revert "power: supply: qti_battery_charger: Add dynamic uusb detection""
+6fe6715daeaa Revert "Revert "power: qti_typec_class: Add typec class support for micro USB""
+77d6eb5df3af Revert "Revert "power: supply: qti_battery_charger: Add extcon support""
+262f162ec98d Revert "power: supply: qti_battery_charger: Return charge counter in uAh"
+ab2d0d72523a Revert "power: supply: qti_battery_charger: Return time to full in seconds"
+53e8ef8f8f17 Revert "power: supply: xiaomi: Support WIRELESS_REVERSE_CLOSE"
+58bbdb142fe5 Revert "Revert "Revert "power: supply: qti_battery_charger: Add extcon support"""
+cfaf154469b1 Revert "Revert "Revert "power: qti_typec_class: Add typec class support for micro USB"""
+73a3068d2d58 Revert "Revert "Revert "power: supply: qti_battery_charger: Add dynamic uusb detection"""
+
+
+=======================
+     2024/03/11
+=======================
+
+* Repository: https://github.com/cupid-development/android_kernel_xiaomi_sm8450/commits/lineage-21
+
+16baeed55de2 ARM64: configs: Add mayfly config
+
+* Repository: https://git.mainlining.org/cupid-development/proprietary_vendor_xiaomi_sm8450-common/commits/lineage-21
+
+a1dcd9d sm8450-common: Add support for mayfly
+
+
+=======================
+     2024/03/10
+=======================
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_miuicamera-zeus/commits/udc
+
+d2eeb91 HACK: Remove sepolicy attribute to avoid build error
+3bce3d9 Update from zeus V816.0.2.0.ULBCNXM
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_zeus/commits/udc
+
+9b32388 zeus: Build with MIUI Camera from V816.0.2.0.ULBCNXM
+a3ef3ef zeus: Update build dependencies
+5094752 zeus: properties: Disable some forcing IMS features
+db93023 zeus: overlay: Commonise CarrierConfigResZeus
+
+* Repository: https://github.com/Evolution-X/packages_apps_Evolver/commits/refs/heads/udc
+
+896780d Evolver: Turn Ambient Music Ticker off by default
+f4f175e Evolver: Update links
+772566b New Crowdin updates (#514-#627)
+bb14738 Evolver: Make QS tile style and QS panel style exclusive
+6708ebe Evolver: Add QS Panel Style [3/3]
+57ab31c Evolver: Allow setting quick QS rows [2/2]
+087262d Evolver: Disable monet theme settings
+6f66f04 Evolver: A11 QS UI Style [3/3]
+92d2f86 Evolver: Add Brightness TextView [2/2]
+77ea7e7 Evolver: Add volume panel text style [2/2]
+f14853d Evolver: Add pulse ambient edge lightning settings
+631fde1 Evolver: Volume panel styles [3/3]
+4c28627 Evolver: Fix default lock clock fonts
+b9a4fb8 Evolver: Add more LS Clocks [2/2]
+5514597 Evolver: Show correct Font Styles on Dashboard
+366d831 Evolver: Introduce Lockscreen Style [2/2]
+
+
+=======================
+     2024/03/09
+=======================
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_sm8450-common/commits/udc
+
+9656015 sm8450-common: Add support for mayfly
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_zeus/commits/udc
+
+492e0c8 zeus: Evolution X bringup for zeus from LineageOS 21
+
+* Repository: https://github.com/Evolution-X/frameworks_base/commits/refs/heads/udc
+
+c9fe10e19460 PixelPropsUtils: Update fingerprints to March 2024 release
+d2cf2a0ffc9c SystemUI: Turn Ambient Music Ticker off by default
+
+* Repository: https://git.mainlining.org/cupid-development/proprietary_vendor_xiaomi_sm8450-common/commits/lineage-21
+
+cbbd15d sm8450-common: Initial import from unicorn V816.0.3.0.ULECNXM
+
+* Repository: https://git.mainlining.org/cupid-development/proprietary_vendor_xiaomi_zeus/commits/lineage-21
+
+53c1ae6 zeus: Initial import from V816.0.2.0.ULBCNXM
+
+
+=======================
+     2024/03/08
+=======================
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_sm8450-common/commits/udc
+
+52a5b1f sm8450-common: overlay: Enable burn in protection
+07fbee9 fixup! sm8450-common: Allow choosing NFC supported SKUs
+1cecfcf sm8450-common: Move default network property to vendor partition
+dee81df sm8450-common: Enable usage of dex2oat64
+85a8a1b sm8450-common: overlay: Drop MMS user agent overlays
+30b84f8 sm8450-common: overlay: Unpin updatable-media from memory
+0c1ddaf sm8450-common: overlay: Remove odex/oat files from pinner list
+7dcdd39 sm8450-common: overlay: Update SurfaceFlinger pin on all targets
+c943c2e sm8450-common: overlay: Set shutdown battery temperature
+d98cbb4 sm8450-common: overlay: Update from unicorn V816.0.3.0.ULECNXM
+bfe0122 sm8450-common: overlay: Add WifiResTarget_cape
+73cdad0 sm8450-common: overlay: Import xiaomi wifi changes for taro
+e97f965 sm8450-common: overlay: Restrict WifiResTarget to taro
+862e976 sm8450-common: Build Lineage Health HAL
+846eaba sm8450-common: Build Lineage PowerShare HAL
+59f1b80 sm8450-common: Drop unused powershare label
+061b1ef sm8450-common: Decommonize goodix_fod.ko
+956161f sm8450-common: Address marble denials
+47fd7f9 sm8450-common: Address marble fingerprint denials
+0281924 sm8450-common: Allow choosing NFC supported SKUs
+efc3a9b sm8450-common: keylayout: Disable single tap on fingerprint sensor
+cc66dc7 sm8450-common: Import fingerprint sensor keylayouts from marble V14.0.9.0.TMREUXM
+2c66faf sm8450-common: hidl: Add fingerprint extension HAL
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_zeus/commits/udc
+
+093af00 zeus: Decommonize CIT sensors
+7b0224c fixup! zeus: Update blobs from V816.0.2.0.ULBCNXM
+d36bb42 zeus: Drop vm-bootsys image
+9cf6756 zeus: Add goodix_fod module
+6d152df zeus: Update blobs from V816.0.2.0.ULBCNXM
+21f3f7b zeus: Decommonize sensors configs
+dafe64f zeus: Decommonize ADSP modules
+
+* Repository: https://github.com/LineageOS/android_hardware_xiaomi/commits/lineage-21
+
+e5a9512 vintf: Add fpc and goodix 1.0 extensions to fcm
+c682da8 vintf: Add fingerprint extension to common fcm
+
+* Repository: https://github.com/cupid-development/android_kernel_xiaomi_sm8450-modules/commits/lineage-21
+
+e71a77c871 msm: camera: flash: Proper QueryCapV1 Handling
+35f643e2bd Revert "Revert "msm: camera: flash: Proper handling of epcr reqs""
+06ba5bee79 Revert "Revert "msm: camera: flash: Reenabling Enable and Disable regulator support for PMIC flash""
+5da0351ac9 Revert "Revert "msm: camera: flash: Add support for flash stream off""
+29790320a0 camera_sensor_utils: Add support for WL2866D
+
+
+=======================
+     2024/03/07
+=======================
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_sm8450-common/commits/udc
+
+c33a07e sm8450-common: rootdir: Set more fingerprint permissions
+
+* Repository: https://github.com/Evolution-X/packages_apps_Settings/commits/refs/heads/udc
+
+d7575dc36b Settings: Update donate link
+
+
+=======================
+     2024/03/06
+=======================
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_sm8450-common/commits/udc
+
+bf0302e sm8450-common: Decommonize cit sensors
+f5dd5cc sm8450-common: Drop goodix_core.ko kernel module
+
+* Repository: https://github.com/truly-irham/android_device_xiaomi_zeus/commits/udc
+
+d41ef24 zeus: Import decommonized libQnnHtpAltPrepV69Stub.so
+713e594 zeus: Setup firmware extraction
+d8e2bd2 zeus: Move to QTI health AIDL service
+c0d8e54 zeus: cleanup blobs
+8113cfd zeus: Decommonize audio HAL
+f5af450 zeus: Decommonize AGM
+91824d8 zeus: Decommonize touch_report
+af0daa6 zeus: Add regulator, touch, haptics and audio kernel modules
+
+* Repository: https://github.com/cupid-development/android_kernel_xiaomi_sm8450/commits/lineage-21
+
+7e5022c6bfda wl2866d: Add missing function prototypes
+1fd20e5724ad input: touchscreen: goodix_9916: Add missing function prototypes
+
+* Repository: https://github.com/Evolution-X/vendor_evolution/commits/refs/heads/udc
+
+2207dab5 DeviceConfig: Enable Cinematic wallpaper effects
+
+
